@@ -1,0 +1,23 @@
+from fpdf import FPDF
+
+def crear_reporte_pdf(costo_fijo, costo_variable, precio_venta, punto_eq, max_cantidad):
+    pdf = FPDF()
+    pdf.add_page()
+    
+    # Cargar fuente para que acepte caracteres especiales
+    pdf.add_font('DejaVu', '', 'DejaVuSans.ttf', uni=True)
+    pdf.set_font('DejaVu', '', 14)
+    
+    pdf.cell(0, 10, "Reporte: Punto de Equilibrio y Análisis Económico", ln=True)
+    
+    pdf.ln(10)
+    pdf.cell(0, 10, f"Costo fijo mensual: ${costo_fijo}", ln=True)
+    pdf.cell(0, 10, f"Costo variable por unidad: ${costo_variable}", ln=True)
+    pdf.cell(0, 10, f"Precio de venta por unidad: ${precio_venta}", ln=True)
+    pdf.cell(0, 10, f"Punto de equilibrio (unidades): {punto_eq}", ln=True)
+    pdf.cell(0, 10, f"Máxima cantidad producida: {max_cantidad}", ln=True)
+    
+    nombre_pdf = "reporte_panaderia.pdf"
+    pdf.output(nombre_pdf)
+    
+    return nombre_pdf
